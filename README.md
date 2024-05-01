@@ -10,7 +10,7 @@
 1) Run the install script
 
 ```sh
-wget https://raw.githubusercontent.com/thor1033/dotfiles/main/install.sh && sh install.sh
+wget https://raw.githubusercontent.com/thor1033/arch-linux-dotfiles/main/install.sh && sh install.sh
 ```
 
 2) 
