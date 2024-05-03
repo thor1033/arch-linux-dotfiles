@@ -41,15 +41,11 @@ function install_yay {
 
 function bootstrap {
     chmod a+x ~/.dotfiles/scripts/*
-
-    mkdir -p ~/Pictures/wallpapers
-    wget https://i.imgur.com/uGRFZEs.jpg -O ~/Pictures/wallpapers/bliss.png
-
     ~/.dotfiles/scripts/reload.py
 }
 
 if __read_yn "THIS SCRIPT CAN POTENTIALLY ERASE EXISTING DATA, THIS IS MEANT TO BE RAN ON A FRESH ARCH LINUX INSTALL!\nIt is also very likey this wont even work, use at your own risk\ncontinue? [y/N] " -1; then
-    git clone "https://github.com/abaan404/dotfiles" ~/.dotfiles
+    git clone "https://github.com/thor1033/archlinux-dotfiles" ~/.dotfiles
 else
     exit
 fi
