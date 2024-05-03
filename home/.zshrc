@@ -2,8 +2,8 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/usr/share/oh-my-zsh"
-
+export ZSH="$HOME/.zplug/repos/robbyrussell/oh-my-zsh"
+# Path to your oh-my-zsh installation.
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -70,10 +70,10 @@ ZSH_THEME="fox"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git z)
 
 source $ZSH/oh-my-zsh.sh
-
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -96,20 +96,49 @@ source $ZSH/oh-my-zsh.sh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
+
+alias ku="cd /mnt/Dokumenter/KU/ && fzf | xargs -r -I % $EDITOR %"
+alias kur="cd /mnt/Dokumenter/KU/ && ranger"
+alias stata="/usr/local/stata17/xstata && exit"
+alias statax="/usr/local/stata17/stata"
+
+cf() { du -a ~/.config/* | awk '{print $2}' | fzf | xargs -r $EDITOR ;}
+
+alias yt="youtube-dl --add-metadata -i"
+alias yta="yt -x -f bestaudio/best"
+alias ls="lsd"
+alias chp="cht.sh python"
+alias chl="cht.sh latex"
+alias vi="~/.local/bin/lvim"
+alias conda-activate="/opt/anaconda/bin/activate root"
+alias conda-deactivate="/opt/anaconda/bin/deactivate root"
+export VISUAL=~/.local/bin/lvim
+export EDITOR="$VISUAL"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-PATH=~/.local/bin:$PATH
+export CONDA_AUTO_ACTIVATE_BASE=false
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/anaconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/anaconda/etc/profile.d/conda.sh" ]; then
+        . "/opt/anaconda/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/anaconda/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
-EDITOR=nvim
-alias vim="nvim"
-alias nivm="nvim"
-alias nvmi="nvim"
-alias vnim="nvim"
 
-alias untar="tar -cvzf $1"
-alias p="python3"
-export TERM=xterm-256color
+# bun completions
+[ -s "/home/thor/.bun/_bun" ] && source "/home/thor/.bun/_bun"
 
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
