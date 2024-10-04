@@ -23,6 +23,8 @@ lvim.plugins = {
     config = true, -- run require("neorg").setup()
   },
 }
+
+require'lspconfig'.tsserver.setup{}
 local pywal = require('pywal')
 
 pywal.setup()
